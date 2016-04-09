@@ -9,7 +9,9 @@ Installation
 ------------
 
 Install pyyp with `pip`:
-    pip install pyyp
+```bash
+pip install pyyp
+```
 
 Example
 -------
