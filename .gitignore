@@ -2,13 +2,17 @@
 __pycache__/
 *.py[cod]
 
-# Build
-build/
-dist/
-*.egg-info/
-
 # Unit test / coverage reports
 .tox/
 .coverage
 nosetests.xml
 .cache/
+
+# Distribution / packaging
+build/
+dist/
+eggs/
+.eggs/
+sdist/
+*.egg-info/
+*.egg
