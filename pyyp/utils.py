@@ -7,6 +7,7 @@ pyyp.client
 This module provides utils.
 """
 
+
 def encode_params(data):
     if data is None:
         return data
@@ -25,6 +26,7 @@ def encode_params(data):
         pairs.append('='.join(p))
 
     return '&'.join(pairs)
+
 
 def mask_api_key(v):
     text_len = 4

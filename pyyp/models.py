@@ -28,6 +28,7 @@ class Request(object):
     def params(self):
         return self._params
 
+
 class Response(object):
     @classmethod
     def parse(cls, http_resp):

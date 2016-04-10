@@ -2,6 +2,7 @@
 
 from pyyp import utils
 
+
 def test_encode_params():
     tests = (
         ({'a': 'b'}, 'a=b'),
@@ -12,6 +13,7 @@ def test_encode_params():
 
     for params, text in tests:
         assert utils.encode_params(params) == text
+
 
 def test_mask_api_key():
     tests = (

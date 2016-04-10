@@ -16,6 +16,7 @@ from .utils import encode_params
 
 logger = logging.getLogger(__name__)
 
+
 class Client(object):
     """Client to send requests"""
 
@@ -34,12 +35,11 @@ class Client(object):
         params = encode_params(kwargs.get('params'))
         data = encode_params(kwargs.get('data'))
         logger.info('sending request. url=%s method=%s params=%r data=%r '
-                'timeout=%s', url, method, params, data, kwargs['timeout'])
+                    'timeout=%s', url, method, params, data, kwargs['timeout'])
         try:
             r = self._session.request(method, url, **kwargs)
-            logger.info('received response. url=%s method=%s '
-                    'status_code=%s text=%s', url, method, r.status_code,
-                    r.text)
+            logger.info('received response. url=%s method=%s status_code=%s '
+                        'text=%s', url, method, r.status_code, r.text)
             return r
         except requests.exceptions.RequestException as e:
             logger.error('sending request error. %s', e)

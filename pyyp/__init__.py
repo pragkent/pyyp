@@ -8,11 +8,11 @@ pyyp
 :license: MIT, see LICENSE for more details.
 """
 
+from .api import Yunpian
+
 __title__ = 'pyyp'
 __version__ = '0.0.4'
-__author__ = 'Kent Wang'
-__email__ = 'pragkent@gmail.com'
-__license__ = 'MIT'
-__copyright__ = 'Copyright 2016 Kent Wang'
 
-from .api import Yunpian
+__all__ = [
+    'Yunpian', '__version__', '__title__'
+]
