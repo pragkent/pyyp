@@ -7,11 +7,10 @@ pyyp.models
 This module provides the requests and responses for Yunpian.
 """
 
-import sys
-
 import requests
 
 from .errors import YunpianBadResponse
+from .compat import is_py2
 
 
 class Request(object):
@@ -39,7 +38,7 @@ class Response(object):
             data = http_resp.json()
         except requests.exceptions.HTTPError as e:
             msg = '%s: %s' % (e, http_resp.text[:200])
-            if sys.version_info < (3, 0):
+            if is_py2:
                 msg = msg.encode('utf-8')
             raise YunpianBadResponse(msg)
         except ValueError:

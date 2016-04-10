@@ -19,6 +19,10 @@ class Yunpian(object):
     """The core Yunpian class."""
 
     def __init__(self, api_key, timeout=10):
+        api_key = str(api_key)
+        if not api_key.isalnum() or len(api_key) != 32:
+            raise ValueError('invalid api_key: %r' % api_key)
+
         self._api_key = api_key
         self._client = Client(timeout)
 
