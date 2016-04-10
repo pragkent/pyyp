@@ -10,6 +10,10 @@ python:
 
 install:
   - pip install -r requirements.txt
+  - pip install codecov
 
 script:
-  - py.test tests
+  - py.test --cov=pyyp tests/
+
+after_success:
+  - codecov
