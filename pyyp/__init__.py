@@ -9,7 +9,7 @@ pyyp
 """
 
 __title__ = 'pyyp'
-__version__ = '0.0.3'
+__version__ = '0.0.4'
 __author__ = 'Kent Wang'
 __email__ = 'pragkent@gmail.com'
 __license__ = 'MIT'
