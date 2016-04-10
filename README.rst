@@ -15,14 +15,15 @@ Installation
 To install pyyp, simply:
 .. code-block:: bash
 
-  $ pip install pyyp
+    $ pip install pyyp
+
 
 Example
 -------
 .. code-block:: python
 
-  >>> yunpian = pyyp.Yunpian(api_key=API_KEY)
-  >>> yunpian.send('13812345678', 'hello yunpian!')
+    >>> yunpian = pyyp.Yunpian(api_key=API_KEY)
+    >>> yunpian.send('13812345678', 'hello yunpian!')
 
 
 TODO
