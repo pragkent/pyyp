@@ -26,7 +26,7 @@ class Client(object):
     def get(self, request):
         return self._request(
                 'get',
-                request.uri,
+                request.url,
                 params=request.params,
                 timeout=self._timeout)
 
@@ -48,6 +48,6 @@ class Client(object):
     def post(self, request):
         return self._request(
                 'post',
-                request.uri,
+                request.url,
                 data=request.params,
                 timeout=self._timeout)

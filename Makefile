@@ -4,5 +4,8 @@ bdist:
 publish: bdist
 	twine upload dist/*
 
+test:
+	py.test tests/
+
 clean:
 	rm -rf pyyp.egg-info build dist

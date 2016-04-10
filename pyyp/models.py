@@ -14,15 +14,15 @@ from .compat import is_py2
 
 
 class Request(object):
-    BASE_URI = 'https://sms.yunpian.com'
+    BASE_URL = 'https://sms.yunpian.com'
     PATH = '/'
 
     def __init__(self, **kwargs):
         self._params = kwargs
 
     @property
-    def uri(self):
-        return '%s%s' % (self.BASE_URI, self.PATH)
+    def url(self):
+        return '%s%s' % (self.BASE_URL, self.PATH)
 
     @property
     def params(self):
