@@ -11,7 +11,7 @@ import logging
 
 import requests
 
-from .errors import YunpianTransportError
+from .exceptions import RequestException, Timeout
 from .utils import encode_params
 
 logger = logging.getLogger(__name__)
@@ -41,9 +41,12 @@ class Client(object):
             logger.info('received response. url=%s method=%s status_code=%s '
                         'text=%s', url, method, r.status_code, r.text)
             return r
+        except requests.exceptions.Timeout as e:
+            logger.error('request timeout. %s', e)
+            raise Timeout(e)
         except requests.exceptions.RequestException as e:
-            logger.error('sending request error. %s', e)
-            raise YunpianTransportError(e)
+            logger.error('request error. %s', e)
+            raise RequestException(e)
 
     def post(self, request):
         return self._request(

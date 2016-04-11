@@ -9,7 +9,7 @@ This module provides the requests and responses for Yunpian.
 
 import requests
 
-from .errors import YunpianBadResponse
+from .exceptions import HTTPError, BadResponse
 from .compat import is_py2
 
 
@@ -41,9 +41,9 @@ class Response(object):
             msg = '%s: %s' % (e, http_resp.text[:200])
             if is_py2:
                 msg = msg.encode('utf-8')
-            raise YunpianBadResponse(msg)
+            raise HTTPError(msg)
         except ValueError:
-            raise YunpianBadResponse('Response is not JSON')
+            raise BadResponse('Response is not JSON')
 
         return cls(**data)
 
@@ -63,7 +63,7 @@ class SMSSendResponse(Response):
             self.mobile = kwargs['mobile']
             self.sid = kwargs['sid']
         except KeyError as e:
-            raise YunpianBadResponse('"%s" attribute is missing' % str(e))
+            raise BadResponse('"%s" attribute is missing' % str(e))
 
     def __repr__(self):
         return ('SMSSendResponse(code={self.code}, msg={self.msg}, '
@@ -86,7 +86,7 @@ class SMSBatchSendResponse(Response):
             for r in kwargs['data']:
                 self.results.append(SMSSendResponse(**r))
         except KeyError as e:
-            raise YunpianBadResponse('"%s" attribute is missing' % str(e))
+            raise BadResponse('"%s" attribute is missing' % str(e))
 
     def __repr__(self):
         return ('SMSBatchSendResponse(total_count={self.total_count}, '

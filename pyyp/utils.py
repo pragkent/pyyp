@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-pyyp.client
+pyyp.utils
 ~~~~~~~~~~~
 
 This module provides utils.
