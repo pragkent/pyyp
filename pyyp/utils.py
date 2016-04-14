@@ -30,6 +30,5 @@ def encode_params(data):
 
 def mask_api_key(v):
     text_len = 4
-    mask_len = len(v) - 2 * text_len
-    parts = [v[:text_len], '*' * mask_len, v[-text_len:]]
+    parts = [v[:text_len], '****', v[-text_len:]]
     return ''.join(parts)
