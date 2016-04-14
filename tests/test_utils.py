@@ -8,7 +8,7 @@ def test_encode_params():
         ({'a': 'b'}, 'a=b'),
         ({'a': 'b#'}, 'a=b#'),
         ({'a': 'b', 'apikey': '2fc7ddf68d81440bee7db3710763dc6f'},
-         'a=b&apikey=2fc7************************dc6f')
+         'a=b&apikey=2fc7****dc6f')
     )
 
     for params, text in tests:
@@ -17,9 +17,9 @@ def test_encode_params():
 
 def test_mask_api_key():
     tests = (
-        ('A', 'AA'),
+        ('A', 'A****A'),
         ('2fc7ddf68d81440bee7db3710763dc6f',
-         '2fc7************************dc6f'),
+         '2fc7****dc6f'),
     )
 
     for text, want in tests:
