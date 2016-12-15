@@ -12,7 +12,10 @@ from .models import (
         SMSSendRequest,
         SMSSendResponse,
         SMSBatchSendRequest,
-        SMSBatchSendResponse)
+        SMSBatchSendResponse,
+        GetBlackWordRequest,
+        GetBlackWordResponse,
+        )
 
 
 class Yunpian(object):
@@ -34,3 +37,8 @@ class Yunpian(object):
                                   text=text)
         r = self._client.post(req)
         return SMSBatchSendResponse.parse(r)
+
+    def get_black_word(self, text):
+        req = GetBlackWordRequest(apikey=self._api_key, text=text)
+        r = self._client.post(req)
+        return GetBlackWordResponse.parse(r)

@@ -92,3 +92,42 @@ class SMSBatchSendResponse(Response):
         return ('SMSBatchSendResponse(total_count={self.total_count}, '
                 'total_fee={self.total_fee}, unit={self.unit}, '
                 'results={self.results})').format(self=self)
+
+
+class GetBlackWordRequest(Request):
+    PATH = '/v2/sms/get_black_word.json'
+
+
+class GetBlackWordResponse(Response):
+
+    def __init__(self, **kwargs):
+        self.http_status_code = kwargs.get('http_status_code', 0)
+        self.code = kwargs.get('code', 0)
+        self.message = kwargs.get('msg', None)
+        self.detail = kwargs.get('detail', None)
+        self.results = kwargs.get('results', None)
+
+    def __repr__(self):
+        return ('GetBlackWordResponse(http_status_code={self.http_status_code}, '
+                'code={self.code}, message={self.message}, detail={self.detail}, '
+                'results={self.results})').format(self=self)
+
+    @classmethod
+    def parse(cls, http_resp):
+        """Parse response from http request, overload."""
+
+        try:
+            http_resp.raise_for_status()
+            data = http_resp.json()
+        except requests.exceptions.HTTPError as e:
+            msg = '%s: %s' % (e, http_resp.text[:200])
+            if is_py2:
+                msg = msg.encode('utf-8')
+            raise HTTPError(msg)
+        except ValueError:
+            raise BadResponse('Response is not JSON')
+
+        if type(data) == list:
+            return cls(results=data)
+        else:
+            return cls(**data)
